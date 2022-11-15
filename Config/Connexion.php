@@ -1,5 +1,4 @@
 <?php
-require_once("../Models/Modeles.php");
 class PDOConnexion
 {
     private $serveur;
@@ -23,7 +22,7 @@ class PDOConnexion
             //creation de l'objet PDO
             $pdo = new PDO("mysql:host=$this->serveur;dbname=$this->base","$this->username","$this->password");
            
-           if($pdo != null) echo "Connexion réussi";
+           if($pdo != null) //echo "Connexion réussi";
             return $pdo;
             } catch (PDOException $e){ //erreur de connexion à la basse
             print "Erreur : ".$e->getMessage();
