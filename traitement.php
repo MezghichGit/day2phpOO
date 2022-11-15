@@ -2,14 +2,16 @@
 
 class PDOConnexion
 {
-    public $serveur;
-    public $base;
-    public $username;
-    public $password;
-    public $db=null;
+    private $serveur;
+    private $base;
+    private $username;
+    private $password;
+    private $db=null;
 
-    public function __construct($serveur, $base, $username, $password)
+ 
+   public function __construct()
     {
+        require_once("ConfigDB.php");
         $this->serveur = $serveur;
         $this->base = $base;
         $this->username = $username;
@@ -19,7 +21,7 @@ class PDOConnexion
     public function createConnexion(){
         try {
             //creation de l'objet PDO
-            $db = new PDO("mysql:host=$this->serveur;dbname=$this->base",$this->username,$this->password);
+            $db = new PDO("mysql:host=$this->serveur;dbname=$this->base","$this->username","$this->password");
            
            if($db != null) echo "Connexion réussi";
          
@@ -35,7 +37,6 @@ class PDOConnexion
     }
 }
 
-
-$conn = new PDOConnexion("localhost","gkphp2022","root","");
+$conn = new PDOConnexion();
 $conn->createConnexion();
 ?>
