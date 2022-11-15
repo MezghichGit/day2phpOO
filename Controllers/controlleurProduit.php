@@ -13,5 +13,6 @@ $produit = new Produit($libelle,$prix,$quantite);
 require_once("../Models/Repository.php");
 $manager = new DaoProduit();
 $manager->createProduit($produit);
+header("Location:../index.php")
 
 ?>

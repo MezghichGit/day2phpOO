@@ -35,18 +35,4 @@ class PDOConnexion
         $pdo=null;  
     }
 }
-/*
-$pdoConnexion = new PDOConnexion();
-$pdo = $pdoConnexion->createConnexion();
-*/
-// création d'un produit de test et insertion via PDO
-
-//step 1 : création de l'objet
-//$produit = new Produit("Smart Phone Samsung A33",2000,50);
-//step 2 : insertion dans le PDO
-/*$sql = "INSERT INTO Produit (libelle, prix, quantite)
-  VALUES ('".$produit->getLibelle()."', '".$produit->getPrix()."', '".$produit->getQuantite()."')";
-
-$pdo->exec($sql);
-echo "New product created successfully";*/
 ?>
