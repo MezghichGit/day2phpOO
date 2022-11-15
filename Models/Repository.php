@@ -6,7 +6,7 @@ class DaoProduit{
     public function createProduit(Produit $produit)
     {
         //appel au PDO pour faire l'insertion
-         require_once("../Config/Connexion.php");
+        include("../Config/Connexion.php");
         $pdoConnexion = new PDOConnexion();
         $pdo = $pdoConnexion->createConnexion();
 
@@ -20,6 +20,16 @@ class DaoProduit{
     public function listProduit()
     {
         //appel au PDO pour faire l'affichage
+
+        require_once("../Config/Connexion.php");
+        $pdoConnexion = new PDOConnexion();
+        $pdo = $pdoConnexion->createConnexion();
+
+        $stmt = $pdo->prepare("SELECT * FROM produit");
+        $stmt->execute();
+        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+        return $result;
+        //var_dump($result);
     }
 
     public function deleteProduit(Produit $produit)
