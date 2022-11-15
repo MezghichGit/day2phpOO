@@ -1,12 +1,12 @@
 <?php
-
+require_once("Modeles.php");
 class PDOConnexion
 {
     private $serveur;
     private $base;
     private $username;
     private $password;
-    private $db=null;
+    private $pdo=null;
 
  
    public function __construct()
@@ -21,10 +21,10 @@ class PDOConnexion
     public function createConnexion(){
         try {
             //creation de l'objet PDO
-            $db = new PDO("mysql:host=$this->serveur;dbname=$this->base","$this->username","$this->password");
+            $pdo = new PDO("mysql:host=$this->serveur;dbname=$this->base","$this->username","$this->password");
            
-           if($db != null) echo "Connexion réussi";
-         
+           if($pdo != null) echo "Connexion réussi";
+            return $pdo;
             } catch (PDOException $e){ //erreur de connexion à la basse
             print "Erreur : ".$e->getMessage();
             die();
@@ -32,11 +32,22 @@ class PDOConnexion
             
     }
     public function deleteConnexion(){
-        $db=null;
+        $pdo=null;
             
     }
 }
 
-$conn = new PDOConnexion();
-$conn->createConnexion();
+$pdoConnexion = new PDOConnexion();
+$pdo = $pdoConnexion->createConnexion();
+
+// création d'un produit de test et insertion via PDO
+
+//step 1 : création de l'objet
+$produit = new Produit("Smart Phone Samsung A33",2000,50);
+//step 2 : insertion dans le PDO
+$sql = "INSERT INTO Produit (libelle, prix, quantite)
+  VALUES ('".$produit->getLibelle()."', '".$produit->getPrix()."', '".$produit->getQuantite()."')";
+
+$pdo->exec($sql);
+echo "New product created successfully";
 ?>
