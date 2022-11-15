@@ -4,5 +4,4 @@
      $base="gkphp2022";
      $username="root";
      $password="";
-
 ?>
